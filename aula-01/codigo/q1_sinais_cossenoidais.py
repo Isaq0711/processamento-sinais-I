@@ -1,21 +1,15 @@
-import numpy as np
-import matplotlib.pyplot as plt
+FS, DURACAO, FREQUENCIAS = 44100, 5, [500, 5000, 10000]
+JANELA_PLOT = 0.01  # s
 
-fs = 44100
-T = 5
-frequencias = [500, 5000, 10000]
-t = np.arange(0, T, 1/fs)
+sinais_q1 = {}
+for f in FREQUENCIAS:
+    t, x = gerar_cosseno(f, DURACAO, FS)
+    sinais_q1[f] = (t, x)
+    n_j = int(JANELA_PLOT * FS)
+    plotar_tempo(t[:n_j]*1000, x[:n_j],
+                 titulo=f"Sinal cossenoidal — f = {f} Hz (janela de 10 ms)",
+                 xlabel="Tempo (ms)")
 
-for f in frequencias:
-    x = np.cos(2 * np.pi * f * t)
-
-    plt.figure(figsize=(8, 3))
-    plt.plot(t * 1000, x)  # Tempo em milissegundos (ms) facilita a leitura
-    plt.title(f'Sinal cossenoidal - {f} Hz')
-    plt.xlabel('Tempo (ms)')
-    plt.ylabel('Amplitude')
-    plt.grid(True)
-    
-    # Exibe 5 períodos exatos para qualquer frequência
-    plt.xlim(0, (5 / f) * 1000) 
-    plt.show()
+for f, (_, x) in sinais_q1.items():
+    print(f"Sinal cossenoidal de {f} Hz:")
+    tocar(x, FS)
