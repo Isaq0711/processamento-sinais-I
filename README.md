@@ -31,7 +31,7 @@ Instale as dependências:pip install -r requirements.txt
 ## Como utilizar
 
 Cada aula possui uma pasta própria. Por exemplo, para a Aula 01: 
-cd ap1-sinais-sistemas
+cd aula-01
 
 Antes de executar, disponibilize os arquivos de dados indicados na
 seção da aula correspondente (abaixo) na subpasta `dados/`.
