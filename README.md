@@ -45,6 +45,7 @@ arquivos de dados.
 
 ## Organização das pastas 
 aula-0N/
+
 codigo -> células/scripts da atividade
 
 dados/ -> arquivos de entrada fornecidos pelo professor
