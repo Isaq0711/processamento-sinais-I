@@ -45,8 +45,10 @@ arquivos de dados.
 
 ## Organização das pastas 
 aula-0N/
-notebook (ou codigo/) -> células/scripts da atividade
+codigo -> células/scripts da atividade
+
 dados/ -> arquivos de entrada fornecidos pelo professor
+
 resultados/ -> figuras/saídas geradas ao rodar o notebook
 
 
