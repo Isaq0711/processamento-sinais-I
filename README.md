@@ -93,8 +93,6 @@ código associada.
 como saída (`plt.show()`) e, quando aplicável, um player de áudio
 inline (`IPython.display.Audio`).
 
-**Relatório:** `Relatorio_AP1_ProcessamentoSinais_Isaque.docx`
-(fundamentação teórica, metodologia e discussão dos resultados).
 
 ---
 
