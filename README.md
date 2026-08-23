@@ -61,10 +61,10 @@ Geração de sinais cossenoidais e chirps, leitura/reprodução de áudio
 em diferentes frequências de amostragem, análise espectral (FFT) e
 convolução com resposta ao impulso.
 
-**Pasta:** `ap1-sinais-sistemas/`
+**Pasta:** `aula-01`
 
 **Arquivos de dados necessários** (colocar em
-`ap1-sinais-sistemas/dados/`):
+`aula-01/dados/`):
 
 - `handel.wav`
 - `h_banheiro.wav`
