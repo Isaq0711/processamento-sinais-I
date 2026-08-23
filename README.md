@@ -106,4 +106,5 @@ presentes em `dados/`.
 ## Autores
 
 Isaque Soares, Guilherme Archanjo e Marcelo Auday
+
 CEFET-RJ
