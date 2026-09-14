@@ -7,6 +7,8 @@ ministrada pelo Prof. Rafael S. Chaves.
 
 - Aula 01 — Sinais e Sistemas (sinais cossenoidais, chirps, amostragem
   de áudio, convolução com resposta ao impulso)
+- Aula 02 — Amostragem (análise espectral, subamostragem,
+  sobreamostragem, amostragem na frequência de Nyquist e reconstrução)
 
 ## Requisitos
 Para executar os códigos, são necessários:
