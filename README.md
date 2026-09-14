@@ -9,6 +9,9 @@ ministrada pelo Prof. Rafael S. Chaves.
   de áudio, convolução com resposta ao impulso)
 - Aula 02 — Amostragem (análise espectral, subamostragem,
   sobreamostragem, amostragem na frequência de Nyquist e reconstrução)
+- Aula 03 — Transformada z (resposta em frequência, diagrama de polos e zeros, 
+  filtros de recuperação e aproximações FIR)
+
 
 ## Requisitos
 Para executar os códigos, são necessários:
@@ -139,7 +142,33 @@ resposta ao impulso do banheiro.
 
 **Saídas:** cada célula exibe o gráfico correspondente diretamente
 como saída (`plt.show()`) e, quando aplicável, um player de áudio
-inline (`IPython.display.Audio`).
+inline (`IPython.display.Audio).
+
+## Aula 03 — Transformada z
+
+Resposta em frequência e diagrama de polos e zeros de sistemas LIT (uma função de transferência H(z) de 12ª ordem e uma família de seis filtros comb); resposta de cada sistema ao sinal `handel.wav`; projeto de filtros de recuperação (inversos) por inversão regularizada no domínio da frequência; projeto de aproximações FIR causais desses filtros de recuperação por mínimos quadrados, em diferentes ordens.
+
+**Pasta:** `aula-03/`
+
+**Notebook:** `aula-03.ipynb`
+
+**Arquivos de dados necessários** (colocar em `aula-03/dados/`):
+
+- `handel.wav`
+
+**Ordem de execução das células** (reaproveitam variáveis entre si):
+
+1. **Setup** — importações e funções utilitárias (`ler_wav`, `tocar`, `calculate_spectrum`, `plotar_polos_zeros`, `plotar_resposta_frequencia`, `aplicar_sistema`, `recuperar_dominio_frequencia`, `avaliar_recuperacao`, `obter_resposta_impulso`, `projetar_fir_inverso_lsq`, `aplicar_fir_inverso`)
+2. **Leitura do sinal de áudio** — carrega `handel.wav` (gera `x_handel` e `fs_handel`, usados em todas as questões seguintes)
+3. **Questão 1** — H(z) do enunciado: polos/zeros e resposta em frequência
+4. **Questão 2** — resposta de H(z) ao sinal de áudio (gera `y1`, usado na Questão 3)
+5. **Questão 3** — filtro de recuperação de H(z) da Questão 1 (polos/zeros e resposta em frequência do inverso ideal, recuperação, avaliação e audição)
+6. **Questão 4** — polos/zeros e resposta em frequência dos 6 filtros comb, para a ∈ {0,7; 0,9} e L ∈ {1, 4, 10}
+7. **Questão 5** — resposta de cada um dos 6 sistemas ao sinal de áudio (gera `respostas_comb`, usado na Questão 6)
+8. **Questão 6** — filtros de recuperação para os 6 sistemas da Questão 4 (polos/zeros do inverso ideal, recuperação, avaliação e audição)
+9. **Questão 7** — aproximações FIR por mínimos quadrados dos filtros de recuperação das Questões 3 e 6, em 4 ordens (8, 32, 128, 512), com gráfico de SNR de recuperação vs. ordem do filtro
+
+**Saídas:** cada célula exibe o gráfico correspondente diretamente como saída (`plt.show()`) e, quando aplicável, um player de áudio inline (`IPython.display.Audio`); métricas de avaliação (MSE, SNR, correlação) são impressas no próprio notebook.
 
 ## Resultados
 
