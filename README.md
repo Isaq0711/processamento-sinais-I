@@ -13,6 +13,8 @@ ministrada pelo Prof. Rafael S. Chaves.
   filtros de recuperação e aproximações FIR)
 - Aula 04 — DFT e DCT (DTFT vs. DFT, resolução espectral e zero-padding,
   compressão de áudio por DFT/DCT, compressão de imagens por DCT em blocos)
+- Aula 05 — DCT (compressão de áudio por DFT/DCT, energia de imagens na DCT 2-D,
+  compressão de imagens por DCT em blocos)
 
 
 ## Requisitos
