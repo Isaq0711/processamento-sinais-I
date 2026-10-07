@@ -11,7 +11,7 @@ ministrada pelo Prof. Rafael S. Chaves.
   sobreamostragem, amostragem na frequência de Nyquist e reconstrução)
 - Aula 03 — Transformada z (resposta em frequência, diagrama de polos e zeros, 
   filtros de recuperação e aproximações FIR)
-  - Aula 04 — DFT e DCT (DTFT vs. DFT, resolução espectral e zero-padding,
+- Aula 04 — DFT e DCT (DTFT vs. DFT, resolução espectral e zero-padding,
   compressão de áudio por DFT/DCT, compressão de imagens por DCT em blocos)
 
 
@@ -197,6 +197,30 @@ Comparação entre DTFT e DFT de diferentes comprimentos; análise de resoluçã
 **Saídas:** cada célula exibe o gráfico ou a imagem correspondente diretamente como saída (`plt.show()`) e, quando aplicável, um player de áudio inline (`IPython.display.Audio`); as métricas (coeficientes retidos, taxa de compressão e MSE) são impressas no próprio notebook.
 
 **Dependência adicional:** a Questão 4 usa **Pillow** para leitura da imagem (`pip install pillow`), já incluído no `requirements.txt`.
+
+## Aula 05 — DCT
+
+Compressão de sinais 1-D (áudio) por DFT e por DCT com retenção de energia; análise da energia de uma imagem no domínio da DCT 2-D; compressão da imagem por DCT em blocos L×L, à semelhança do padrão JPEG.
+
+> **Observação:** as três questões desta aula correspondem às Questões 3, 4 e 5 da Aula 04 (mesmas transformadas, mesmo critério de retenção de energia e mesmos parâmetros). O notebook da Aula 05 é autocontido: não depende de nenhum arquivo da Aula 04.
+
+**Pasta:** `aula-05/`
+
+**Notebook:** `ap5_dct.ipynb`
+
+**Arquivos de dados necessários** (colocar em `aula-05/dados/`):
+
+- `handel.wav`
+- `sosias.jpg`
+
+**Ordem de execução das células** (reaproveitam variáveis entre si):
+
+1. **Setup** — importações e funções utilitárias (`ler_wav`, `ler_imagem_cinza`, `tocar`, `manter_maiores_por_energia`, `erro_quadratico_medio`)
+2. **Questão 1** — compressão de `handel.wav` por DFT e por DCT para r ∈ {99,5%; 99%; 90%; 75%; 50%}, com número de coeficientes, MSE, taxa de compressão e audição dos sinais comprimidos
+3. **Questão 2** — DCT 2-D de `sosias.jpg`: magnitude em escala logarítmica e curva de energia acumulada (gera `imagem`, usada na Questão 3)
+4. **Questão 3** — compressão da imagem por DCT em blocos, para L ∈ {8, 64} e r ∈ {95%, 50%}, com imagens reconstruídas, coeficientes retidos, taxa de compressão e MSE
+
+**Saídas:** cada célula exibe o gráfico ou a imagem correspondente diretamente como saída (`plt.show()`) e, quando aplicável, um player de áudio inline (`IPython.display.Audio`); as métricas (coeficientes retidos, taxa de compressão e MSE) são impressas no próprio notebook.
 
 ## Resultados
 
