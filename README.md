@@ -206,7 +206,7 @@ Compressão de sinais 1-D (áudio) por DFT e por DCT com retenção de energia; 
 
 **Pasta:** `aula-05/`
 
-**Notebook:** `ap5_dct.ipynb`
+**Notebook:** `aula-05.ipynb`
 
 **Arquivos de dados necessários** (colocar em `aula-05/dados/`):
 
