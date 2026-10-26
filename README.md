@@ -15,6 +15,8 @@ ministrada pelo Prof. Rafael S. Chaves.
   compressão de áudio por DFT/DCT, compressão de imagens por DCT em blocos)
 - Aula 05 — DCT (compressão de áudio por DFT/DCT, energia de imagens na DCT 2-D,
   compressão de imagens por DCT em blocos)
+- Aula 06 — Transformadas de Wavelets (transformada de Hadamard em CDMA, análise de sinal
+  não estacionário com wavelets, remoção de ruído por limiarização)
 
 
 ## Requisitos
@@ -24,6 +26,7 @@ Para executar os códigos, são necessários:
 - NumPy
 - SciPy
 - Matplotlib
+- PyWavelets (transformadas de wavelets na Aula 06)
 - Um ambiente com kernel Jupyter/IPython para abrir arquivos `.ipynb`
   (ex.: Jupyter Notebook/Lab, VS Code com a extensão Jupyter, Google
   Colab, Kaggle Notebooks, entre outros)
@@ -223,6 +226,34 @@ Compressão de sinais 1-D (áudio) por DFT e por DCT com retenção de energia; 
 4. **Questão 3** — compressão da imagem por DCT em blocos, para L ∈ {8, 64} e r ∈ {95%, 50%}, com imagens reconstruídas, coeficientes retidos, taxa de compressão e MSE
 
 **Saídas:** cada célula exibe o gráfico ou a imagem correspondente diretamente como saída (`plt.show()`) e, quando aplicável, um player de áudio inline (`IPython.display.Audio`); as métricas (coeficientes retidos, taxa de compressão e MSE) são impressas no próprio notebook.
+
+## Aula 06 — Transformadas de Wavelets
+
+Transformada de Hadamard como base dos códigos de um sistema CDMA de 3 usuários, com ruído AWGN e código distorcido no receptor (probabilidade de erro simulada e teórica); resumo sobre transformadas de wavelets; decomposição de cinco estágios de um sinal não estacionário com a wavelet 7–9 (`bior4.4`); remoção de ruído do sinal `leleccum` por limiarização de coeficientes de wavelet (`db4`), comparada à limiarização na DFT.
+
+**Pasta:** `aula-06/`
+
+**Notebook:** `aula-06.ipynb`
+
+**Arquivos de dados necessários** (colocar em `aula-06/dados/`):
+
+- `leleccum.mat`
+
+O sinal não estacionário da Questão 3 não precisa de arquivo: é gerado no próprio notebook com o código do script `non_stationary_signal.ipynb` do repositório da disciplina. A função `calculate_spectrum()` usada é a fornecida pelo professor nesse mesmo repositório.
+
+**Ordem de execução das células** (reaproveitam variáveis entre si):
+
+1. **Setup** — importações, `calculate_spectrum()` e `q_func()` (função Q)
+2. **Questão 1** — CDMA com Hadamard: (a) mensagens, códigos (linhas 1, 2 e 3 de H8) e sinais codificados, com espectros; (b) sinal recebido e seu espectro para σ² ∈ {10⁻³, 10⁻², 10⁻¹, 1}; (c) dedução em notação vetorial; (d) estimativa m̂ e probabilidade de erro × σ² por Monte Carlo (1,2 milhão de bits), comparada a Q(√(8/σ²)); (e) dedução do efeito do código distorcido; (f) probabilidade de erro × σ² com código distorcido, comparada a Q(√(8/(3σ²)))
+3. **Questão 2** — resumo sobre wavelets: respondido no relatório; o notebook traz só duas ilustrações (funções de escala e de wavelet; divisão do plano tempo–frequência da STFT × wavelet diádica)
+4. **Questão 3** — sinal não estacionário: (a) código do script, tabelas de segmentos e transientes, sinal anotado e espectro; (b) filtros de análise e de síntese da `bior4.4`; (c) decomposição de cinco estágios com escala de amostras normalizada e participação de cada subfaixa na energia de cada segmento (define `plotar_decomposicao()`, usada também na Questão 4)
+5. **Questão 4** — remoção de ruído em `leleccum`: (a) sinal e espectro; (b) filtros da `db4`; (c) decomposição de cinco estágios; (d) limiarização dos coeficientes (limiar universal, variação do limiar α, suave × dura, com e sem a aproximação); (e) limiarização na DFT e comparação com a wavelet para o mesmo número de coeficientes não nulos
+
+**Dependências entre células:** a Questão 4 usa `plotar_decomposicao()`, definida na Questão 3(c); portanto, execute a Questão 3 antes da Questão 4. A Questão 4(e) usa variáveis definidas na Questão 4(d).
+
+**Reprodutibilidade:** as sementes dos geradores aleatórios são fixas (42, 1, 2, 3, 4 e 7), de modo que os resultados numéricos e as figuras do relatório são reproduzíveis. As simulações de Monte Carlo da Questão 1 podem levar algumas dezenas de segundos.
+
+**Saídas:** cada célula exibe o gráfico correspondente diretamente como saída (`plt.show()`); as métricas (probabilidade de erro, energia por subfaixa, resíduo, rugosidade e viés) são impressas no próprio notebook.
 
 ## Resultados
 
