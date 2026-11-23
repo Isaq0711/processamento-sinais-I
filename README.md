@@ -17,6 +17,8 @@ ministrada pelo Prof. Rafael S. Chaves.
   compressão de imagens por DCT em blocos)
 - Aula 06 — Transformadas de Wavelets (transformada de Hadamard em CDMA, análise de sinal
   não estacionário com wavelets, remoção de ruído por limiarização)
+- Aula 07 — Projeto de Filtros IIR (blocos de 2ª ordem, associações em cascata e em paralelo, 
+  quantização de coeficientes, remoção de interferências em áudio)
 
 
 ## Requisitos
