@@ -255,6 +255,35 @@ O sinal não estacionário da Questão 3 não precisa de arquivo: é gerado no p
 
 **Saídas:** cada célula exibe o gráfico correspondente diretamente como saída (`plt.show()`); as métricas (probabilidade de erro, energia por subfaixa, resíduo, rugosidade e viés) são impressas no próprio notebook.
 
+## Aula 07 — Projeto de Filtros IIR
+
+Projeto de filtros IIR a partir de blocos básicos de 2ª ordem (passa-baixas, passa-altas, passa-faixas e notch), com zeros sobre a circunferência unitária e polos complexos conjugados r·e^(±jωc); passa-faixas por cascata e rejeita-faixas por paralelo de blocos; quantização dos coeficientes (forma direta × blocos); e remoção de interferências tonais e ruído branco do áudio `handel.wav` com uma cascata de blocos de 2ª ordem.
+
+**Pasta:** `aula-07/`
+
+**Notebook:** `aula-07.ipynb`
+
+**Arquivos de dados necessários** (colocar em `aula-07/dados/`):
+
+- `handel.wav` (usado apenas na Questão 5; as Questões 1 a 4 não usam arquivos)
+
+A função `calculate_spectrum()` usada é a fornecida pelo professor no repositório da disciplina (`gele7317-proc-sin`).
+
+**Ordem de execução das células** (reaproveitam variáveis e funções entre si):
+
+1. **Setup** — importações, `calculate_spectrum()`, `ler_wav()`, `tocar()` e as funções de projeto e análise dos blocos: `projetar_bloco()` (tipos `lpf`, `hpf`, `bpf` e `notch`, com normalização de ganho), `combinar_cascata()`, `combinar_paralelo()`, `zeros_polos()`, `resposta()`, `em_db()`, `imprimir_hz()`, `desenhar_pz()` e `bordas_3db()`
+2. **Questão 1** — blocos de 2ª ordem com fs = 20 kHz: (a) passa-baixas em 1000 Hz; (b) passa-altas em 2000 Hz; (c) passa-faixas em 7000 Hz; (d) notch em 3000 Hz. Cada item traz H(z), módulo, fase, diagrama de polos e zeros e a varredura de r ∈ {0,5; 0,7; 0,9; 0,95; 0,99} com tabela de pico, frequência de −3 dB e largura de banda (define `estudo_r()` e `F_PLOT`, usados nas questões seguintes)
+3. **Questão 2** — passa-faixas de 6 a 8 kHz por cascata de passa-altas (6000 Hz) e passa-baixas (8000 Hz), com r = 0,6: projeto direto (A) e projeto com ângulos dos polos ajustados para que as bordas de −3 dB caiam em 6000 e 8000 Hz (B), comparados ao bloco único da Questão 1(c) com a mesma largura de banda (define `cascata_q2()` e `blocos_q2`, usados na Questão 4)
+4. **Questão 3** — rejeita-faixas de 1 a 4 kHz por paralelo de passa-baixas (1000 Hz) e passa-altas (4000 Hz), com r = 0,5 e s = +1: varredura de r e do sinal s do ramo passa-altas, e comparação com o notch da Questão 1(d) (define `paralelo_q3()` e `blocos_q3`, usados na Questão 4)
+5. **Questão 4** — quantização dos coeficientes dos filtros das Questões 2 e 3 com b ∈ {2, 4, 8, 16, 32} bits, na forma direta (filtro resultante) e bloco a bloco, com estabilidade, erro de resposta, deslocamento de polos e zeros e estudo de sensibilidade para r ∈ {0,6; 0,9; 0,99} (define `quantizar()`, `avaliar_quantizacao()`, `plotar_quant_resposta()` e `plotar_quant_pz()`, usadas na Questão 5g)
+6. **Questão 5** — remoção de interferências em `handel.wav` (fs = 8192 Hz): (a) sinal contaminado por tons de 100 Hz e 2000 Hz e ruído branco com σ² ∈ {10⁻², 10⁻¹, 1}, no tempo e em frequência, com players de áudio; (b) análise espectral (detectabilidade dos tons e energia acumulada do sinal); (c) projeto da cascata (notch em 100 Hz com r = 0,995, notch em 2000 Hz com r = 0,98 e passa-baixas em 3500 Hz com r = 0,6), com varreduras que justificam os parâmetros; (d) filtragem e comparação de x, y e x̂ no tempo e em frequência; (e) SNR, MSE, potência de ruído residual e de distorção; (f) audição dos sinais recuperados; (g) quantização com b ∈ {2, 4, 8, 16} bits (e 10 e 12 na tabela), forma direta de 6ª ordem × cascata
+
+**Dependências entre células:** a Questão 4 usa `blocos_q2`, `blocos_q3`, `cascata_q2()` e `paralelo_q3()`, definidos nas Questões 2 e 3, e `F_PLOT`, definido na Questão 1; a Questão 5(g) usa as funções de quantização da Questão 4. Execute as células em ordem, a partir do Setup.
+
+**Reprodutibilidade:** o ruído branco da Questão 5 é gerado de um vetor-base N(0, 1) com semente fixa (0), multiplicado por √σ², de modo que apenas a variância muda entre os casos e os resultados numéricos são reproduzíveis.
+
+**Saídas:** cada célula exibe o gráfico correspondente diretamente como saída (`plt.show()`) e, na Questão 5, players de áudio inline (`IPython.display.Audio`); as tabelas e métricas (largura de banda, profundidade de rejeição, estabilidade, SNR, MSE) são impressas no próprio notebook.
+
 ## Resultados
 
 Os resultados apresentados nos relatórios de cada aula podem ser
